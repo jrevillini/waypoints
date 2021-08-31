@@ -8,7 +8,6 @@
   var keyCounter = 0
   var contexts = {}
   var Waypoint = window.Waypoint
-  var oldWindowLoad = window.onload
 
   /* http://imakewebthings.com/waypoints/api/context */
   function Context(element) {
@@ -290,12 +289,9 @@
     return contexts[element.waypointContextKey]
   }
 
-  window.onload = function() {
-    if (oldWindowLoad) {
-      oldWindowLoad()
-    }
+  window.addEventListener('load', function() {
     Context.refreshAll()
-  }
+  })
 
 
   Waypoint.requestAnimationFrame = function(callback) {
